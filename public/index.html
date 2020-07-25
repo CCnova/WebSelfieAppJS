@@ -6,8 +6,25 @@
   <title>Document</title>
 </head>
 <body>
+  <script>
+    if ('geolocation' in navigator) {
+      console.log('Geolocation is available');
+      navigator.geolocation.getCurrentPosition((position) => {
+        const lat = position.coords.latitude;
+        const long = position.coords.longitude;
+        document.getElementById('latitude').textContent = lat;
+        document.getElementById('longitude').textContent = long;
+        console.log(position);
+      });
+    } else {
+      console.log('Geolocation is not available');
+    }
+  </script>
   <h1>Data Selfie App</h1>
   
-  <p>Hello!</p>
+  <p>
+    latitude: <span id="latitude"></span><br />
+    longitude: <span id="longitude"></span>
+  </p>
 </body>
 </html>
