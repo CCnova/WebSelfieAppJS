@@ -9,12 +9,25 @@
   <script>
     if ('geolocation' in navigator) {
       console.log('Geolocation is available');
-      navigator.geolocation.getCurrentPosition((position) => {
+      navigator.geolocation.getCurrentPosition( async (position) => {
         const lat = position.coords.latitude;
         const long = position.coords.longitude;
         document.getElementById('latitude').textContent = lat;
         document.getElementById('longitude').textContent = long;
-        console.log(position);
+        // console.log(position);
+
+        const data = { lat, long};
+        const options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(data)
+        };
+
+        const response = await fetch('/api', options);
+        const jsonResp = await response.json();
+        console.log(jsonResp);
       });
     } else {
       console.log('Geolocation is not available');
