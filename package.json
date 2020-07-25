@@ -1,0 +1,27 @@
+{
+  "name": "data_selfie_app",
+  "version": "1.0.0",
+  "description": "Data Selfie App Of Coding Train Tutorial",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/CCnova/DataSelfieAppJS.git"
+  },
+  "keywords": [
+    "data",
+    "selfie",
+    "javascript"
+  ],
+  "author": "Caio Nova",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/CCnova/DataSelfieAppJS/issues"
+  },
+  "homepage": "https://github.com/CCnova/DataSelfieAppJS#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
