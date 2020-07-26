@@ -23,6 +23,7 @@ app.get('/api', ( request, response ) => {
 app.post('/api', ( request, response ) => {
   console.log('Got a request!');
   const data = request.body;
+  console.log(data);
   const timestamp = Date.now();
   data.timestamp = timestamp;
   database.insert(data);
