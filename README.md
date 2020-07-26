@@ -1,0 +1,1 @@
+Simple JavaScript App. It takes the user name and location, a capture with the user webcam, stores it into a file database "database.db", and shows at another pages all the previous captures.
