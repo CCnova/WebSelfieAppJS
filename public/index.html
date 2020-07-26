@@ -15,19 +15,24 @@
         document.getElementById('latitude').textContent = lat;
         document.getElementById('longitude').textContent = long;
         // console.log(position);
-
-        const data = { lat, long};
-        const options = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
-        };
-
-        const response = await fetch('/api', options);
-        const jsonResp = await response.json();
-        console.log(jsonResp);
+        
+        const btn = document.getElementById('submit');
+        btn.addEventListener('click', async evResult => {
+          const userName = document.getElementById('nameInput').value;
+          const data = { lat, long, userName };
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          };
+  
+          const response = await fetch('/api', options);
+          const jsonResp = await response.json();
+          console.log(jsonResp);
+          
+        });
       });
     } else {
       console.log('Geolocation is not available');
@@ -39,5 +44,10 @@
     latitude: <span id="latitude"></span><br />
     longitude: <span id="longitude"></span>
   </p>
+  <p>
+    Type your name:
+    <input id="nameInput" type="text">
+  </p>
+  <button id="submit">submit</button>
 </body>
 </html>
