@@ -11,24 +11,17 @@
   <script>
 
     function setup() {
+      noCanvas();
+      const video = createCapture(VIDEO);
+      video.size(320, 240);
       let lat, long;
-      if ('geolocation' in navigator) {
-        console.log('Geolocation is available');
-        navigator.geolocation.getCurrentPosition( async (position) => {
-          lat = position.coords.latitude;
-          long = position.coords.longitude;
-          document.getElementById('latitude').textContent = lat;
-          document.getElementById('longitude').textContent = long;
-          // console.log(position);
-          
-        });
-      } else {
-        console.log('Geolocation is not available!');
-      }
+
       const btn = document.getElementById('submit');
       btn.addEventListener('click', async evResult => {
         const userName = document.getElementById('nameInput').value;
-        const data = { lat, long, userName };
+        video.loadPixels();
+        const image64 = video.canvas.toDataURL();
+        const data = { lat, long, userName, image64 };
         const options = {
           method: 'POST',
           headers: {
@@ -43,8 +36,21 @@
         
       });
 
-      noCanvas();
-      const video = createCapture(VIDEO);
+      if ('geolocation' in navigator) {
+        console.log('Geolocation is available');
+        navigator.geolocation.getCurrentPosition( async (position) => {
+          lat = position.coords.latitude;
+          long = position.coords.longitude;
+          document.getElementById('latitude').textContent = lat;
+          document.getElementById('longitude').textContent = long;
+          // console.log(position);
+          
+        });
+      } else {
+        console.log('Geolocation is not available!');
+      }
+
+      
     }
 
   </script>
@@ -59,6 +65,8 @@
     Type your name:
     <input id="nameInput" type="text">
   </p>
-  <button id="submit">submit</button>
+  <div>
+    <button id="submit">submit</button>
+  </div>
 </body>
 </html>
